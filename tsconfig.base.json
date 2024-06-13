@@ -14,7 +14,25 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@mimic/auth/data-access": ["libs/auth/data-access/src/index.ts"],
+      "@mimic/auth/ui": ["libs/auth/ui/src/index.ts"],
+      "@mimic/client/feature-auth": ["libs/client/feature-auth/src/index.ts"],
+      "@mimic/client/feature-page-not-found": [
+        "libs/client/feature-page-not-found/src/index.ts"
+      ],
+      "@mimic/client/feature-posts": ["libs/client/feature-posts/src/index.ts"],
+      "@mimic/client/feature-shell": ["libs/client/feature-shell/src/index.ts"],
+      "@mimic/core": ["libs/core/src/index.ts"],
+      "@mimic/feature-profile": ["libs/client/feature-profile/src/index.ts"],
+      "@mimic/posts/data-access": ["libs/posts/data-access/src/index.ts"],
+      "@mimic/posts/ui": ["libs/posts/ui/src/index.ts"],
+      "@mimic/shared/data-access": ["libs/shared/data-access/src/index.ts"],
+      "@mimic/shared/ui": ["libs/shared/ui/src/index.ts"],
+      "@mimic/shared/utils": ["libs/shared/utils/src/index.ts"],
+      "@mimic/users/data-access": ["libs/users/data-access/src/index.ts"],
+      "@mimic/users/ui": ["libs/users/ui/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

@@ -1,0 +1,33 @@
+<ng-container *ngFor="let post of postsList">
+  <div class="clr-row">
+    <div class="clr-col-12">
+      <div class="card " style="padding-top: 10px;">
+        <a class="card-header no-border" >
+          {{ post.title }}
+        </a>
+        <div class="card-block no-border">
+          <div class="card-title">
+            <span><cds-icon shape="user"></cds-icon>{{ post.owner.username }}</span>
+            
+          </div>
+          <div class="card-text">
+            {{ post.content }}
+          </div>
+        </div>
+        <div class="card-footer no-border">
+          <div class="btn-group">
+            <button class="btn btn-sm btn-info">
+              <cds-icon shape="thumbs-up"></cds-icon>
+              <span class="clr-icon-title">Upvote</span>
+            </button>
+            <button class="btn btn-sm btn-danger">
+              <cds-icon shape="thumbs-down"></cds-icon>
+              <span class="clr-icon-title">Downvote</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr style="font: 100;color: lightgray;">
+</ng-container>

@@ -1,0 +1,13 @@
+<ng-container *ngFor="let post of postsList">
+    <div class="card">
+        <div class="card-block">
+          <div class="progress top">
+            <progress value="100" max="100"></progress>
+          </div>
+          <div class="card-title topbox">{{post.title}}</div>
+          <p class="card-text box">{{post.content}}</p>
+          <span><cds-icon style="margin-top: -4px;margin-right: 2px;" shape="thumbs-up"></cds-icon>{{ post.votes }}</span>
+        </div>
+        
+      </div>
+</ng-container>>

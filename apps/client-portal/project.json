@@ -22,8 +22,14 @@
             "input": "apps/client-portal/public"
           }
         ],
-        "styles": ["apps/client-portal/src/styles.scss"],
-        "scripts": []
+        "styles": [
+          "node_modules/ngx-spinner/animations/ball-beat.css" ,
+          "apps/client-portal/src/styles.scss",
+          "node_modules/izitoast/dist/css/iziToast.min.css"
+        ],
+        "scripts": [
+          "node_modules/izitoast/dist/js/iziToast.min.js"
+        ]
       },
       "configurations": {
         "production": {

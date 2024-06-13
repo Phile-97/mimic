@@ -1,0 +1,34 @@
+<div class="login-wrapper">
+	<form 
+	class="login"
+	[formGroup]="registrationForm"
+	(ngSubmit)="onSubmit()"
+	>
+	  <section class="title">
+		<h3 class="welcome">Welcome to</h3>
+		Mimic
+		<h5 class="hint">Enter your details to signup</h5>
+	  </section>
+	  <div class="login-group">
+		<clr-input-container>
+		  <label class="clr-sr-only">Username</label>
+		  <input type="text" name="username" clrInput placeholder="Username" formControlName="username" />
+		</clr-input-container>
+        <clr-input-container>
+            <label class="clr-sr-only">Email</label>
+            <input type="text" name="email" clrInput placeholder="Email" formControlName="email" />
+          </clr-input-container>
+		<clr-password-container>
+		  <label class="clr-sr-only">Password</label>
+		  <input type="password" name="password" clrPassword placeholder="Password" formControlName="password" />
+		</clr-password-container>
+        <clr-password-container>
+            <label class="clr-sr-only">Confirm Password</label>
+            <input type="password" name="confirmPassword" clrPassword placeholder="Password" formControlName="confirmPassword" />
+          </clr-password-container>
+		<button type="submit" class="btn btn-primary" [disabled]="registrationForm.invalid " [clrLoading]="btnState$">LOGIN</button>
+        <span>Have an account? <a [routerLink]="['/auth/login']" class="signup">Login</a> </span>
+		
+	  </div>
+	</form>
+  </div>

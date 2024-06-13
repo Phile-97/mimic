@@ -1,0 +1,35 @@
+<div style="margin: 20px">
+  
+    <!-- <hr /> -->
+    <div class="clr-row">
+      <div class="clr-col-lg-3 clr-col-md-4 clr-col-12">
+        <div class="clr-row">
+          <div class="card">
+            <div class="card-block">
+              <div class="card-media-block">
+                <img
+                  src="assets/images/avatar.png"
+                  class="card-media-image"
+                />
+                <div class="card-media-description" style="text-align: center">
+                  <span class="card-media-title" *ngIf="user"> {{user.username}} </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" [routerLink]="['./transactions']" routerLinkActive="active"><clr-icon shape="list"  style="margin-top: -5px;"></clr-icon>Transactions</div>
+            <div class="card-header" [routerLink]="['./payment-methods']" routerLinkActive="active"><clr-icon shape="credit-card"  style="margin-top: -5px;"></clr-icon>Payment Methods</div>
+            <div class="card-header" [routerLink]="['./my-account']" routerLinkActive="active"><clr-icon shape="user"  style="margin-top: -5px;"></clr-icon>Profile</div>
+            <!-- <div class="card-header"> <clr-icon shape="cog" size="xs" style="margin-top: -5px;"></clr-icon>Security</div> -->
+          </div>
+          <!-- <div class="card">
+            <div class="card-header" [routerLink]="['./my-account']" routerLinkActive="active"><clr-icon shape="user"  style="margin-top: -5px;"></clr-icon>Profile</div>
+          </div> -->
+        </div>
+      </div>
+  
+
+    </div>
+  </div>
+  
