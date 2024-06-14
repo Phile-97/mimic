@@ -1,1 +1,43 @@
-<p>post-form works!</p>
+<form clrForm [formGroup]="postForm" clrLayout="vertical">
+    <div class="clr-row">
+        <div class="clr-col-md-12"><clr-input-container>
+            <label>Title</label>
+            <input clrInput type="text" formControlName="title" size="100" />
+            <clr-control-error>Field is required</clr-control-error>
+          </clr-input-container></div>
+          <div class="clr-col-md-12">
+            <clr-textarea-container style="width: 100%;">
+              <label>Content</label>
+              <textarea clrTextarea formControlName="content" required size="10000" style="width: 120%;" rows="15"></textarea>
+              <!-- <clr-control-helper>Helper text that shows while it is pristine and valid</clr-control-helper> -->
+              <clr-control-error *clrIfError="'required'">Field is required</clr-control-error>
+            </clr-textarea-container>
+          </div>
+            <div class="clr-col-12" style="margin-top: 20px;">
+                <label style="font-size: small" for="text"
+                    ><input
+                      type="checkbox"
+                      id="radio"
+                      formControlName="published"
+                      style="margin-right: 15px"
+                    />Publish?</label
+                  >
+              </div>
+      
+
+  
+    </div>
+    <div class="modal-footer">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [clrLoading]="btnState$ | async"
+        [disabled]="postForm.invalid"
+        (click)="submit()"
+        
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+  

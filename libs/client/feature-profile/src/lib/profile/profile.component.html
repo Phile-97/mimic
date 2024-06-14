@@ -18,8 +18,6 @@
             </div>
           </div>
           <div class="card">
-            <div class="card-header" [routerLink]="['./transactions']" routerLinkActive="active"><clr-icon shape="list"  style="margin-top: -5px;"></clr-icon>Transactions</div>
-            <div class="card-header" [routerLink]="['./payment-methods']" routerLinkActive="active"><clr-icon shape="credit-card"  style="margin-top: -5px;"></clr-icon>Payment Methods</div>
             <div class="card-header" [routerLink]="['./my-account']" routerLinkActive="active"><clr-icon shape="user"  style="margin-top: -5px;"></clr-icon>Profile</div>
             <!-- <div class="card-header"> <clr-icon shape="cog" size="xs" style="margin-top: -5px;"></clr-icon>Security</div> -->
           </div>
@@ -29,7 +27,29 @@
         </div>
       </div>
   
-
+      <div class="clr-col-lg-9 clr-col-md-8 clr-col-12">
+        <div class="card">
+            <div class="card-block">
+              <h3><cds-icon shape="cog" size="28"></cds-icon> My Account</h3>
+            </div>
+          </div>
+          
+          <lib-user-information-form
+            [btnState$]="usersFacade.btnState$"
+            [user]="userDataService.getUserProfile() | async"
+            (formValue)="usersFacade.updateUser($event)"
+            (updatePassword)="isUpdatePassword=true"
+          ></lib-user-information-form>
+          
+          <lib-password-form-ui
+            *ngIf="isUpdatePassword"
+            [btnState$]="usersFacade.btnState$"
+            [user]="userDataService.getUserProfile() | async"
+            (closeModal)="isUpdatePassword = false"
+            (formValue)="updatePassword($event)"
+          >
+          </lib-password-form-ui>
+      </div>
     </div>
   </div>
   

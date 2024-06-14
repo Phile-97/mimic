@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PostsEntity, PostsFacade } from '@mimic/posts/data-access';
 
 @Component({
@@ -8,15 +9,12 @@ import { PostsEntity, PostsFacade } from '@mimic/posts/data-access';
 })
 export class ListPostsComponent implements OnInit{
   public placeholderMessage!: string;
-  public isUpdate!: boolean;
-  public isCreate!: boolean;
-  public isDelete!: boolean;
-  public isChangeCompanyStatus!: boolean;
   public selectedPost!: PostsEntity;
 
   constructor(
     public postsFacade: PostsFacade,
-    private cdr: ChangeDetectorRef
+    private router: Router,
+    private route: ActivatedRoute,
   ) {}
 
   ngOnInit(): void {
@@ -28,29 +26,12 @@ export class ListPostsComponent implements OnInit{
   }
 
   refresh(isRefresh: any){
-    this.isUpdate = false;
-    this.isCreate = false;
-    this.isDelete = false;
     return isRefresh ? this.getPosts() : null;
   }
 
-  updatePost(post: any) {
-    this.selectedPost = post;
-    this.isUpdate = true;
-  }
-
-  deletePost(post: any) {
-    this.selectedPost = post;
-    this.isDelete = true;
-  }
-
-  upVotePost(post: any) {
-    this.selectedPost = post;
-    this.isDelete = true;
-  }
-
-  downVotePost(post: any) {
-    this.selectedPost = post;
-    this.isDelete = true;
+  viewSelectedPost(post: any) {
+    this.router.navigate(['../posts/view', post.id], {
+      relativeTo: this.route,
+    });
   }
 }

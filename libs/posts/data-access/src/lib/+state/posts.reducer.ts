@@ -3,6 +3,7 @@ import { createReducer, on, Action } from '@ngrx/store';
 
 import * as PostsActions from './posts.actions';
 import { PostsEntity } from './posts.models';
+import { ClrLoadingState } from '@clr/angular';
 
 export const POSTS_FEATURE_KEY = 'posts';
 
@@ -12,6 +13,7 @@ export interface PostsState extends EntityState<PostsEntity> {
   loading: boolean;
   selectedPost: PostsEntity | null;
   total: number;
+  btnState: ClrLoadingState;
   error?: string | null; // last known error (if any)
 }
 
@@ -28,6 +30,7 @@ export const initialPostsState: PostsState = postsAdapter.getInitialState({
   loading: false,
   error: null,
   total: 0,
+  btnState: ClrLoadingState.DEFAULT,
   selectedPost: null
 });
 
@@ -44,7 +47,8 @@ const reducer = createReducer(
       ...state, 
       loaded: true,
       loading: false,
-      error: null
+      error: null,
+      total: posts.length
      })
   ),
   on(PostsActions.getAllPostsFailure, (state, { error }) => ({ 
@@ -66,6 +70,7 @@ const reducer = createReducer(
       loaded: false,
       loading: false,
       error: null,
+      btnState: ClrLoadingState.LOADING,
     })
   ),
 
@@ -89,7 +94,8 @@ const reducer = createReducer(
       ...state,
       loaded: true,
       loading: false,
-      error: null
+      error: null,
+      btnState: ClrLoadingState.SUCCESS,
     })
   ),
 
@@ -104,7 +110,8 @@ const reducer = createReducer(
       ...state,
       loaded: false,
       loading: false,
-      error: error
+      error: error,
+      btnState: ClrLoadingState.ERROR,
     })
   ),
 );

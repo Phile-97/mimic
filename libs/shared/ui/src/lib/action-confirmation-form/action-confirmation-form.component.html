@@ -1,1 +1,20 @@
-<p>action-confirmation-form works!</p>
+<clr-modal [(clrModalOpen)]="opened" [clrModalClosable]="false">
+    <h3 class="modal-title"><ng-content select=".action-header"></ng-content></h3>
+    <div class="modal-body">
+      <ng-content select=".action-message"></ng-content>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-danger" (click)="closeModal.emit()">
+        No
+      </button>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [clrLoading]="btnState$ | async"
+        (click)="proceed.emit()"
+      >
+        Yes
+      </button>
+    </div>
+  </clr-modal>
+  

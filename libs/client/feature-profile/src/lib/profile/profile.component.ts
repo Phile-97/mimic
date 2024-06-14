@@ -9,7 +9,7 @@ import { firstValueFrom } from 'rxjs';
   styleUrl: './profile.component.scss',
 })
 export class ProfileComponent implements OnInit {
-  public isUpdatePassword!: boolean;
+  public isUpdatePassword = false;
   public user!: UsersEntity;
 
   constructor(
@@ -28,7 +28,7 @@ export class ProfileComponent implements OnInit {
   }
 
   public updatePassword(request: any) {
-    //this.usersFacade.updatePassword(request);
+    this.usersFacade.updateUser(request);
     this.usersFacade.loaded$.subscribe((res) => {
       if (res) this.isUpdatePassword = false;
     });

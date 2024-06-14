@@ -8,10 +8,10 @@
     </div>
     <div class="header-nav">
       <a
-        [routerLink]="['/posts']"
-        routerLinkActive="active"
-        class="nav-link nav-text"
-        >Posts</a
+        (click)="goToPage()"
+        class="btn btn-outline"
+        style="border-radius: 3px;border: 3px;border-color: yellow;"
+        >Create New Post</a
       >
     </div>
     <div class="header-actions">
@@ -21,6 +21,7 @@
         class="nav-link nav-text"
         >Log In</a
       >
+
       <clr-dropdown *ngIf="isLoggedIn">
         <button
           class="nav-icon"
@@ -45,3 +46,15 @@
     </div>
   </div>
 </clr-main-container>
+
+
+<lib-action-confirmation-form
+*ngIf="showLoginDialog"
+(proceed)="goToLoginPage()"
+(closeModal)="showLoginDialog = false"
+>
+  <span class="action-header">Login To Create Posts</span>
+  <span class="action-message"
+    >Proceed?</span
+  >
+</lib-action-confirmation-form>

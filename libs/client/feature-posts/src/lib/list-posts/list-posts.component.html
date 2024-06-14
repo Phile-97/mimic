@@ -2,59 +2,26 @@
   <div class="clr-col-md-1"></div>
   <div class="clr-col-md-10">
     <div class="clr-row">
-      <!-- <div class="clr-col-md-3">
-        <div class="card">
-          <div class="card-block">
-            
-            <div class="progress top">
-              <progress value="100" max="100"></progress>
-            </div>
-            <div class="card-title topbox">Share whats on your mind...</div>
-            <p class="card-text box">
-              <button class="btn btn-sm btn-warning">
-                <cds-icon shape="pencil"></cds-icon>
-                <span class="clr-icon-title">Post</span>
-              </button>
-            </p>
-            
-          </div>
-          
-        </div>
-      </div> -->
       <div class="clr-col-md-9">
-        
         <div class="limit-height">
           <lib-posts-list-ui
-            [postsList]="postsFacade.allPosts$ | async"
+            [postsList]="(postsFacade.allPosts$ | async)!"
+            [loading]="postsFacade.loading$ | async"
             [placeholderMessage]="placeholderMessage"
             (updatedState)="getPosts()"
-            (updateSelected)="updatePost($event)"
-            (deleteSelected)="deletePost($event)"
+            (viewSelected)="viewSelectedPost($event)"
           ></lib-posts-list-ui>
         </div>
       </div>
       <div class="clr-col-md-3">
-        <div class="card">
-          <div class="card-block">
-            <div class="card-title">
-              Top Posts
-            </div>
-    <hr>
-            <div class="limit-height">
-              <div class="card-text">
-                <lib-top-posts-ui
-                [postsList]="postsFacade.allPosts$ | async"
-                [placeholderMessage]="placeholderMessage"
-              ></lib-top-posts-ui>
-              </div>
-            </div>
-          </div>
-        </div>
+        <lib-top-posts-ui
+                  [postsList]="postsFacade.allPosts$ | async"
+                  [loading]="postsFacade.loading$ | async"
+                  [placeholderMessage]="placeholderMessage"
+                  (viewSelected)="viewSelectedPost($event)"
+                ></lib-top-posts-ui>
       </div>
     </div>
   </div>
   <div class="clr-col-md-1"></div>
 </div>
-
-
-

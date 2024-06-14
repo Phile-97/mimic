@@ -6,14 +6,16 @@ import { UserProfileResolverService, UsersDataAccessModule } from '@mimic/users/
 import { RouterModule } from '@angular/router';
 import { ClarityModule } from '@clr/angular';
 import '@cds/core/icon/register.js';
-import { ClarityIcons, cogIcon, pasteIcon, pencilIcon, thumbsDownIcon, thumbsUpIcon, userIcon } from '@cds/core/icon';
+import { ClarityIcons, clockIcon, cogIcon, pasteIcon, pencilIcon, thumbsDownIcon, thumbsUpIcon, trashIcon, userIcon } from '@cds/core/icon';
 import { AuthGuard } from './guards/auth.guard';
-ClarityIcons.addIcons(pasteIcon,cogIcon,userIcon,thumbsDownIcon,thumbsUpIcon,pencilIcon);
+import { SharedUiModule } from '@mimic/shared/ui';
+ClarityIcons.addIcons(pasteIcon,cogIcon,userIcon,thumbsDownIcon,thumbsUpIcon,pencilIcon,trashIcon,clockIcon);
 
 @NgModule({
   imports: [
     CommonModule,
     ClarityModule,
+    SharedUiModule,
     AuthDataAccessModule,
     UsersDataAccessModule,
     RouterModule.forChild(

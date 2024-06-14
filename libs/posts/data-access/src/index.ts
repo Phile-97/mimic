@@ -5,3 +5,4 @@ export { PostsActions, PostsFeature, PostsSelectors };
 export * from './lib/+state/posts.models';
 export * from './lib/+state/posts.facade';
 export * from './lib/posts-data-access.module';
+export * from './lib/services/posts.service';

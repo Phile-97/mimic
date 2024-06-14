@@ -1,1 +1,32 @@
-<p>update-post works!</p>
+
+
+<div class="clr-row">
+    <div class="clr-col-md-1"></div>
+    <div class="clr-col-md-10">
+        <div>
+            <ul class="breadcrumb">
+              <li><a [routerLink]="['/posts']">Posts</a></li>
+              <li><a (click)="goBack()">{{selectedPost!.title}}</a></li>
+              <!-- <li>{{selectedPost!.title}}</li> -->
+            </ul>
+          </div>
+          
+          <button class="btn btn-primary btn-sm" (click)="goBack()">
+            <cds-icon shape="arrow" style="transform: rotate(270deg)"></cds-icon>
+            Go Back
+          </button>
+          <br>
+          <lib-post-form
+            [btnState$]="postsFacade.btnState$"
+            [post]="selectedPost"
+            [title]="'Edit Post'"
+            (closeModal)="goBack()"
+            (formValue)="onSubmit($event)"
+          ></lib-post-form>
+    </div>
+    <div class="clr-col-md-1"></div>
+  </div>
+  
+  
+  
+  

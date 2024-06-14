@@ -1,0 +1,46 @@
+<div class="card">
+    <div class="card-block">
+      <form [formGroup]="userForm" class="clr-form-horizontal">
+        <div class="clr-form-control clr-row" style="cursor: not-allowed;">
+          <label for="example" class="clr-control-label clr-col-12 clr-col-md-2"
+            >Username</label
+          >
+          <div class="clr-control-container clr-col-12 clr-col-md-10">
+            {{ userForm.get('username')!.value }}
+          </div>
+        </div>
+  
+        <div class="clr-form-control clr-row">
+          <label for="example" class="clr-control-label clr-col-12 clr-col-md-2"
+            >Password</label
+          >
+          <div class="clr-control-container clr-col-12 clr-col-md-10">
+            <button class="btn btn-primary" (click)="updatePassword.emit(true)">
+              Change Password
+            </button>
+          </div>
+        </div>
+        <br />
+        <hr />
+        <br />
+
+  
+        <clr-input-container>
+          <label>Email</label>
+          <input clrInput type="email" formControlName="email" size="45" />
+          <clr-control-error>Please enter a valid email</clr-control-error>
+        </clr-input-container>
+      </form>
+    </div>
+  
+    <div class="card-footer">
+      <button
+        class="btn btn-primary"
+        (click)="formValue.emit(userForm.value)"
+        [clrLoading]="btnState$ | async"
+      >
+        Save Changes
+      </button>
+    </div>
+  </div>
+  

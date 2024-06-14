@@ -4,6 +4,7 @@ import {
   EventEmitter,
   Input,
 } from '@angular/core';
+import { ClrLoadingState } from '@clr/angular';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -12,6 +13,7 @@ import { Observable } from 'rxjs';
   styleUrl: './action-confirmation-form.component.scss',
 })
 export class ActionConfirmationFormComponent {
+  @Input() btnState$!: Observable<ClrLoadingState>;
   @Output() proceed = new EventEmitter();
   @Output() closeModal = new EventEmitter();
   public opened = true;

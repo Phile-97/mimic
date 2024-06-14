@@ -1,1 +1,56 @@
-<p>post-details works!</p>
+<div class="clr-row">
+    <div class="clr-col-12">
+      <div class="card " style="padding-top: 10px;">
+        <a class="card-header no-border" >
+          {{ post.title }}
+        </a>
+        <div class="card-block no-border">
+          <div class="card-title">
+            <span><cds-icon style="margin-top: -4px;" shape="user"></cds-icon>{{ post.owner.username }}</span>
+            
+          </div>
+          <div class="card-text">
+            {{ post.content }}
+          </div>
+        </div>
+        <div class="card-footer no-border">
+          <div class="btn-group">
+            <span class="spaced"
+              ><cds-icon
+                style="margin-top: -4px; margin-right: 2px"
+                shape="clock"
+              ></cds-icon
+              >{{ post.created_at | date }}</span
+            >
+            <span
+              ><cds-icon
+                style="margin-top: -4px; margin-right: 2px"
+                shape="thumbs-up"
+              ></cds-icon
+              >{{ post.votes }}</span
+            >
+          </div>
+        
+      </div>
+      <div class="card-footer no-border">
+        <div class="btn-group">
+          <button class="btn btn-sm btn-icon btn-info" (click)="upVoteSelected.emit(post)">
+            <cds-icon shape="thumbs-up"></cds-icon>
+            <span class="clr-icon-title">Upvote</span>
+          </button>
+          <button class="btn btn-sm btn-icon btn-danger" (click)="downVoteSelected.emit(post)">
+            <cds-icon shape="thumbs-down"></cds-icon>
+            <span class="clr-icon-title">Downvote</span>
+          </button>
+          <button *ngIf="isAuthor" class="btn btn-sm btn-icon btn-warning" (click)="updateSelected.emit(post)">
+            <cds-icon shape="pencil"></cds-icon>
+            <span class="clr-icon-title">Edit</span>
+          </button>
+          <button *ngIf="isAuthor" class="btn btn-sm btn-icon" (click)="deleteSelected.emit(post)">
+            <cds-icon shape="trash"></cds-icon>
+            <span class="clr-icon-title">Delete</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>

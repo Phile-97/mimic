@@ -51,12 +51,11 @@ export class TokenInterceptorService implements HttpInterceptor {
 
       switch ((<HttpErrorResponse>error).status) {
         case 401:
-          console.log('Showing Toast -----',error)
           Utilities.displayToast(
-            'error',
-              error.error.detail ? error.error.detail : 'Unauthorized'
+            'info',
+             'Session Expired, Please Login Again.'
           );
-          //this.logoutUser();
+          this.logoutUser();
           break;
         case 403:
           Utilities.displayToast(

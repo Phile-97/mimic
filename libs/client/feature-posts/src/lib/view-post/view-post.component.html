@@ -1,1 +1,50 @@
-<p>view-post works!</p>
+<div class="clr-row">
+    <div class="clr-col-md-2"></div>
+    <div class="clr-col-md-8">
+      <div class="clr-row">
+        <div class="clr-col-md-12">
+          <div>
+            <ul class="breadcrumb">
+              <li><a [routerLink]="['/posts']">Posts</a></li>
+              <li>{{selectedPost.title}}</li>
+            </ul>
+          </div>
+          
+          <button class="btn btn-primary btn-sm" (click)="goBack()">
+            <cds-icon shape="arrow" style="transform: rotate(270deg)"></cds-icon>
+            Go Back
+          </button>
+          <br>
+          <div class="limit-height">
+            <lib-post-details
+              [post]="selectedPost"
+              [isAuthor]="isAuthor"
+              (updateSelected)="updatePost($event)"
+              (deleteSelected)="deleteSelected($event)"
+              (upVoteSelected)="upVoteSelected($event)"
+              (downVoteSelected)="downVoteSelected($event)"
+            ></lib-post-details>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="clr-col-md-2"></div>
+  </div>
+  
+  
+  <lib-delete-post
+  *ngIf="isDelete"
+  [selectedPost]="selectedPost"
+  (closeModal)="$event ? refresh($event) : (isDelete = false)"
+></lib-delete-post>
+  
+<lib-action-confirmation-form
+*ngIf="showLoginDialog"
+(proceed)="goToLoginPage()"
+(closeModal)="showLoginDialog = false"
+>
+  <span class="action-header">Login To Create Posts</span>
+  <span class="action-message"
+    >Proceed?</span
+  >
+</lib-action-confirmation-form>

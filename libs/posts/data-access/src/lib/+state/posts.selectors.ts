@@ -37,3 +37,23 @@ export const selectEntity = createSelector(
   selectSelectedId,
   (entities, selectedId) => (selectedId ? entities[selectedId] : undefined)
 );
+
+export const selectSelectedPost = createSelector(
+  selectPostsState,
+  (state: PostsState) => state.selectedPost
+);
+
+export const selectTotalPosts = createSelector(
+  selectPostsState,
+  (state: PostsState) => state.total
+);
+
+export const selectPostsLoadingState = createSelector(
+  selectPostsState,
+  (state: PostsState) => state.loading
+);
+
+export const selectBtnState = createSelector(
+  selectPostsState,
+  (state: PostsState) => state.btnState
+);

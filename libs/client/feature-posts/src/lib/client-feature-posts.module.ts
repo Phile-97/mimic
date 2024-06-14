@@ -7,10 +7,11 @@ import { ListPostsComponent } from './list-posts/list-posts.component';
 import { ViewPostComponent } from './view-post/view-post.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedUiModule } from '@mimic/shared/ui';
-import { PostsDataAccessModule } from '@mimic/posts/data-access';
+import { PostsDataAccessModule, PostsFacade } from '@mimic/posts/data-access';
 import { PostsUiModule } from '@mimic/posts/ui';
 import { RouterModule } from '@angular/router';
 import { ClarityModule } from '@clr/angular';
+import { PostResolver } from './resolvers/post.resolver';
 
 @NgModule({
   imports: [
@@ -22,7 +23,25 @@ import { ClarityModule } from '@clr/angular';
     PostsDataAccessModule,
     PostsUiModule,
     RouterModule.forChild([
-      { path: '', component: ListPostsComponent }
+      { path: '', component: ListPostsComponent },
+      {
+        path: 'create',
+        component: CreatePostComponent,
+      },
+      {
+        path: 'view/:postId',
+        resolve: {
+          post: PostResolver,
+        },
+        component: ViewPostComponent,
+      },
+      {
+        path: 'edit/:postId',
+        resolve: {
+          post: PostResolver,
+        },
+        component: UpdatePostComponent,
+      },
     ])
   ],
   declarations: [

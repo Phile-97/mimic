@@ -7,11 +7,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedUiModule } from '@mimic/shared/ui';
 import { ClarityModule } from '@clr/angular';
 import { TopPostsUiComponent } from './top-posts-ui/top-posts-ui.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    NgxPaginationModule,
     FormsModule,
     ClarityModule,
     SharedUiModule,

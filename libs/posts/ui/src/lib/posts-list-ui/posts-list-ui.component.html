@@ -1,14 +1,29 @@
-<ng-container *ngFor="let post of postsList">
-  <div class="clr-row">
+<ng-container *ngIf="postsList.length > 0 ; else noPosts">
+  <div>
+    <div class="clr-row" >
+      <ng-container
+      *ngFor="
+        let post of postsList
+          | paginate
+            : {
+                itemsPerPage: pageSize,
+                currentPage: page,
+                totalItems: count
+              };
+        let i = index
+      "
+    >
     <div class="clr-col-12">
-      <div class="card " style="padding-top: 10px;">
-        <a class="card-header no-border" >
+      <div class="card" style="padding-top: 10px">
+        <a (click)="viewSelected.emit(post)" class="card-header no-border">
           {{ post.title }}
         </a>
         <div class="card-block no-border">
           <div class="card-title">
-            <span><cds-icon shape="user"></cds-icon>{{ post.owner.username }}</span>
-            
+            <span
+              ><cds-icon shape="user" style="margin-top: -4px"></cds-icon
+              >{{ post.owner.username }}</span
+            >
           </div>
           <div class="card-text">
             {{ post.content }}
@@ -16,18 +31,57 @@
         </div>
         <div class="card-footer no-border">
           <div class="btn-group">
-            <button class="btn btn-sm btn-info">
-              <cds-icon shape="thumbs-up"></cds-icon>
-              <span class="clr-icon-title">Upvote</span>
-            </button>
-            <button class="btn btn-sm btn-danger">
-              <cds-icon shape="thumbs-down"></cds-icon>
-              <span class="clr-icon-title">Downvote</span>
-            </button>
+            <span class="spaced"
+              ><cds-icon
+                style="margin-top: -4px; margin-right: 2px"
+                shape="clock"
+              ></cds-icon
+              >{{ post.created_at | date }}</span
+            >
+            <span
+              ><cds-icon
+                style="margin-top: -4px; margin-right: 2px"
+                shape="thumbs-up"
+              ></cds-icon
+              >{{ post.votes }}</span
+            >
           </div>
         </div>
       </div>
     </div>
+      <hr style="font: 100; color: lightgray" />
+    </ng-container>
+    </div>
+    <div class="clr-row" style="text-align: center">
+      <div class="clr-col-md-12">
+        <pagination-controls 
+        previousLabel="Prev"
+        nextLabel="Next"
+        [responsive]="true"
+        (pageChange)="handlePageChange($event)"
+      ></pagination-controls>
+      </div>
+    </div>
   </div>
-  <hr style="font: 100;color: lightgray;">
+</ng-container>
+
+
+<ng-template  #noPosts >
+  <ng-container *ngIf="!loading">
+    <div id="notfound">
+      <div class="notfound">
+
+        <h2>No Posts Available</h2>
+
+      </div>
+    </div>
+  </ng-container>
+</ng-template>
+
+<ng-container *ngIf="loading">
+  <div class="clr-row" style="text-align: center;margin-top: 20px;">
+    <div class="clr-col-md-12">
+      <div class="spinner">Loading...</div>
+    </div>
+  </div>
 </ng-container>

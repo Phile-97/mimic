@@ -17,6 +17,10 @@ export class PostsFacade {
   loaded$ = this.store.pipe(select(PostsSelectors.selectPostsLoaded));
   allPosts$ = this.store.pipe(select(PostsSelectors.selectAllPosts));
   selectedPosts$ = this.store.pipe(select(PostsSelectors.selectEntity));
+  selectedPost$ = this.store.pipe(select(PostsSelectors.selectSelectedPost));
+  loading$ = this.store.pipe(select(PostsSelectors.selectPostsLoadingState));
+  totalPosts$ = this.store.pipe(select(PostsSelectors.selectTotalPosts));
+  btnState$ = this.store.pipe(select(PostsSelectors.selectBtnState));
 
   /**
    * Use the initialization action to perform one
