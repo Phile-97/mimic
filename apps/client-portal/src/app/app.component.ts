@@ -8,7 +8,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'client-portal';
+  title = 'mimic';
   typeSelected: string;
   
 
