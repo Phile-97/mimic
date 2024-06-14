@@ -13,19 +13,44 @@
 		<clr-input-container>
 		  <label class="clr-sr-only">Username</label>
 		  <input type="text" name="username" clrInput placeholder="Username" formControlName="username" />
+		  <clr-control-error>Field is required</clr-control-error>
 		</clr-input-container>
         <clr-input-container>
             <label class="clr-sr-only">Email</label>
             <input type="text" name="email" clrInput placeholder="Email" formControlName="email" />
+			<clr-control-error>Field is required</clr-control-error>
           </clr-input-container>
-		<clr-password-container>
-		  <label class="clr-sr-only">Password</label>
-		  <input type="password" name="password" clrPassword placeholder="Password" formControlName="password" />
-		</clr-password-container>
-        <clr-password-container>
-            <label class="clr-sr-only">Confirm Password</label>
-            <input type="password" name="confirmPassword" clrPassword placeholder="Password" formControlName="confirmPassword" />
-          </clr-password-container>
+		  <clr-password-container>
+			<label>Password</label>
+			<input
+			  clrPassword
+			  type="password"
+			  formControlName="password"
+			  size="35"
+			  (input)="onPasswordChange(true)"
+			  (focusout)="onPasswordChange(false)"
+			/>
+			<clr-control-error
+			*ngIf="registrationForm.get('newPassword')?.hasError('required') && !showGuidelines"
+			>This field is required</clr-control-error
+		  >
+		  </clr-password-container>
+  
+		  <clr-password-container>
+			  <label>Confirm Password</label>
+				  <input
+				  clrPassword
+					type="password"
+					formControlName="confirmPassword"
+					size="35"
+				  />
+				  <clr-control-error
+					*ngIf="
+					  registrationForm.get('confirmPassword')!.hasError('NoPasswordMatch')
+					"
+					>The passwords do not match!</clr-control-error
+				  >
+			</clr-password-container>
 		<button type="submit" class="btn btn-primary" [disabled]="registrationForm.invalid " [clrLoading]="btnState$">LOGIN</button>
         <span>Have an account? <a [routerLink]="['/auth/login']" class="signup">Login</a> </span>
 		

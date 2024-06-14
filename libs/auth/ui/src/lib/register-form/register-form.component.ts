@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { ClrLoadingState } from '@clr/angular';
+import { Utilities } from '@mimic/shared/utils';
 import { BehaviorSubject, Subject } from 'rxjs';
 
 @Component({
@@ -13,6 +14,9 @@ export class RegisterFormComponent implements OnInit {
   @Input() btnState$!: ClrLoadingState | null;
   @Output() childSubmit: EventEmitter<any> = new EventEmitter<any>();
   public registrationForm!: FormGroup;
+  public showGuidelines = false;
+
+  constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit() {
     this.createRegistrationForm();
@@ -21,14 +25,27 @@ export class RegisterFormComponent implements OnInit {
 
 
   private createRegistrationForm() {
-    this.registrationForm = new FormGroup({
-      username: new FormControl('', Validators.required),
-      email: new FormControl('',[Validators.required,Validators.email] ),
-      password: new FormControl('', Validators.required),
-      confirmPassword: new FormControl('', Validators.required),
-    });
+    this.registrationForm = this.formBuilder.group({
+      username: ['', Validators.required],
+      email: ['',[Validators.required,Validators.email]],
+      password: ['', Validators.required],
+      confirmPassword: ['', Validators.required],
+    },
+    { validator: Utilities.passwordMatchValidator }
+    );
   }
 
+
+  get passwordControl() {
+    return this.registrationForm?.get('password');
+  }
+
+  onPasswordChange(flag: boolean){
+    this.registrationForm.get('password')!.updateValueAndValidity;
+    this.showGuidelines = flag;
+    this.registrationForm.get('password')!.valid ? this.showGuidelines = false : null
+    
+  }
 
 
   onSubmit() {
